@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <h1>Daily reports</h1>
+  <p class="intro">Permanent market-close snapshots, newest first.</p>
+  <div class="reports">
+    {{ range .Site.RegularPages.ByDate.Reverse }}
+      <article><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2></article>
+    {{ else }}
+      <p>No reports published yet.</p>
+    {{ end }}
+  </div>
+{{ end }}
+
