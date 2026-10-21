@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <article class="report" data-nabz-day="{{ .Params.iso_date }}">
+    <a class="back" href="{{ "daily/" | relURL }}">← Daily</a>
+    <h1>{{ .Params.folder }}</h1>
+    <p class="intro">Captured at {{ .Date.Format "15:04 MST" }}</p>
+    <div class="report-grid">
+      <section class="report-card"><h2>Daily Capital</h2>{{ $src := printf "daily/%s/%s" .Params.folder .Params.daily_capital | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Daily Capital for {{ .Params.folder }}"></a></section>
+      <section class="report-card"><h2>Daily Strategy</h2>{{ $src := printf "daily/%s/%s" .Params.folder .Params.daily_strategy | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Daily Strategy for {{ .Params.folder }}"></a></section>
+    </div>
+  </article>
+{{ end }}

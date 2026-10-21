@@ -1,7 +1,4 @@
 languageCode = "en-in"
-title = "Nabz Journal"
-disableKinds = ["taxonomy", "term"]
-
-[outputs]
-home = ["HTML", "RSS"]
+title = "ZiddiPnl"
+disableKinds = ["taxonomy", "term", "RSS"]
 

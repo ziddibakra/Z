@@ -1,12 +1,19 @@
 {{ define "main" }}
-  <h1>Daily reports</h1>
-  <p class="intro">Permanent market-close snapshots, newest first.</p>
-  <div class="reports">
-    {{ range .Site.RegularPages.ByDate.Reverse }}
-      <article><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2></article>
-    {{ else }}
-      <p>No reports published yet.</p>
-    {{ end }}
+  {{ $daily := where .Site.RegularPages "Section" "daily" }}
+  {{ $latest := false }}
+  {{ if gt (len $daily) 0 }}{{ $latest = index ($daily.ByDate.Reverse) 0 }}{{ end }}
+  <h1 class="visually-hidden">ZiddiPnl</h1>
+  <div class="home-items">
+    <section class="chart-card home-item">
+      <h2>Running NAV</h2>
+      {{ with $latest }}{{ $src := printf "daily/%s/%s" .Params.folder .Params.running_nav | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV through {{ .Params.folder }}"></a>{{ else }}<p class="empty">No published capture yet.</p>{{ end }}
+    </section>
+    <section class="chart-card home-item">
+      <h2>Running NAV Breakup</h2>
+      {{ with $latest }}{{ $src := printf "daily/%s/%s" .Params.folder .Params.running_nav_breakup | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV breakup through {{ .Params.folder }}"></a>{{ else }}<p class="empty">No published capture yet.</p>{{ end }}
+    </section>
+    {{ with $latest }}<a class="report-link home-item" href="{{ .RelPermalink }}"><span>Latest Report</span><strong>{{ .Params.folder }}</strong><b aria-hidden="true">→</b></a>{{ else }}<div class="report-link home-item unavailable"><span>Latest Report</span><strong>Unavailable</strong></div>{{ end }}
+    <a class="report-link home-item" href="{{ "daily/" | relURL }}"><span>Older Reports</span><strong>Browse Daily folders</strong><b aria-hidden="true">→</b></a>
   </div>
 {{ end }}
 

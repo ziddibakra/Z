@@ -1,8 +1,8 @@
 {{ define "main" }}
   <article class="report" data-nabz-day="{{ .Date.Format "2006-01-02" }}">
-    <a class="back" href="{{ "/" | relURL }}">← All reports</a>
+    <a class="back" href="{{ "" | relURL }}">← Home</a>
     <h1>{{ .Title }}</h1>
-    <p class="intro">Captured at {{ .Date.Format "15:04 MST" }} · Relative view</p>
+    <p class="intro">Captured at {{ .Date.Format "15:04 MST" }}</p>
     {{ .Content }}
   </article>
 {{ end }}
