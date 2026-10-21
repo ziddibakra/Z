@@ -1,18 +1,27 @@
 {{ define "main" }}
-  {{ $published := where .Site.RegularPages "Section" "in" (slice "daily" "previews") }}
-  {{ $latest := false }}
-  {{ if gt (len $published) 0 }}{{ $latest = index ($published.ByDate.Reverse) 0 }}{{ end }}
+  {{ $latest := .Site.Data.latest }}
+  {{ $daily := where .Site.RegularPages "Section" "daily" }}
+  {{ $latestDaily := false }}
+  {{ if gt (len $daily) 0 }}{{ $latestDaily = index ($daily.ByDate.Reverse) 0 }}{{ end }}
   <h1 class="visually-hidden">ZiddiPnl</h1>
-  <div class="home-items">
-    <section class="chart-card home-item">
+  <div class="home-items"{{ with $latest }} data-nabz-day="{{ .day }}"{{ end }}>
+    {{ with $latest.images.running_nav }}<section class="chart-card home-item running-chart">
       <h2>Running NAV</h2>
-      {{ with $latest }}{{ $src := printf "%s/%s/%s" .Section .Slug .Params.running_nav | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV through {{ .Params.folder }}"></a>{{ else }}<p class="empty">No published capture yet.</p>{{ end }}
-    </section>
-    <section class="chart-card home-item">
+      {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV through {{ $latest.folder }}"></a>
+    </section>{{ end }}
+    {{ with $latest.images.running_nav_breakup }}<section class="chart-card home-item running-chart">
       <h2>Running NAV Breakup</h2>
-      {{ with $latest }}{{ $src := printf "%s/%s/%s" .Section .Slug .Params.running_nav_breakup | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV breakup through {{ .Params.folder }}"></a>{{ else }}<p class="empty">No published capture yet.</p>{{ end }}
-    </section>
-    {{ with $latest }}<a class="report-link home-item" href="{{ .RelPermalink }}"><span>Latest Report</span><strong>{{ .Params.folder }}</strong><b aria-hidden="true">→</b></a>{{ else }}<div class="report-link home-item unavailable"><span>Latest Report</span><strong>Unavailable</strong></div>{{ end }}
+      {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV breakup through {{ $latest.folder }}"></a>
+    </section>{{ end }}
+    {{ with $latest.images.strategy_today }}<section class="chart-card home-item daily-chart">
+      <h2>Today's Strategy P&amp;L</h2>
+      {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Today's Strategy P&amp;L for {{ $latest.folder }}"></a>
+    </section>{{ end }}
+    {{ with $latest.images.running_strategy }}<section class="chart-card home-item daily-chart">
+      <h2>Running Strategy P&amp;L</h2>
+      {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running Strategy P&amp;L through {{ $latest.folder }}"></a>
+    </section>{{ end }}
+    {{ with $latestDaily }}<a class="report-link home-item" href="{{ .RelPermalink }}"><span>Latest Report</span><strong>{{ .Params.folder }}</strong><b aria-hidden="true">→</b></a>{{ else }}<div class="report-link home-item unavailable"><span>Latest Report</span><strong>Unavailable</strong></div>{{ end }}
     <a class="report-link home-item" href="{{ "daily/" | relURL }}"><span>Older Reports</span><strong>Browse Daily folders</strong><b aria-hidden="true">→</b></a>
   </div>
 {{ end }}

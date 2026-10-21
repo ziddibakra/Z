@@ -5,9 +5,10 @@
     <p class="intro">Captured at {{ .Date.Format "15:04 MST" }}</p>
     {{ $base := printf "previews/%s/" .Slug }}
     <div class="report-grid">
-      {{ range $label,$name := dict "Running NAV" .Params.running_nav "Running NAV Breakup" .Params.running_nav_breakup "Daily Capital" .Params.daily_capital "Daily Strategy" .Params.daily_strategy }}
-        <section class="report-card"><h2>{{ $label }}</h2>{{ $src := printf "%s%s" $base $name | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="{{ $label }}"></a></section>
-      {{ end }}
+      {{ with .Params.running_nav }}<section class="report-card running-chart"><h2>Running NAV</h2>{{ $src := printf "%s%s" $base . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV"></a></section>{{ end }}
+      {{ with .Params.running_nav_breakup }}<section class="report-card running-chart"><h2>Running NAV Breakup</h2>{{ $src := printf "%s%s" $base . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV Breakup"></a></section>{{ end }}
+      {{ with .Params.strategy_today }}<section class="report-card daily-chart"><h2>Today's Strategy P&amp;L</h2>{{ $src := printf "%s%s" $base . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Today's Strategy P&amp;L"></a></section>{{ end }}
+      {{ with .Params.running_strategy }}<section class="report-card daily-chart"><h2>Running Strategy P&amp;L</h2>{{ $src := printf "%s%s" $base . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running Strategy P&amp;L"></a></section>{{ end }}
     </div>
   </article>
 {{ end }}
