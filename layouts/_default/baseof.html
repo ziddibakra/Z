@@ -10,9 +10,9 @@
   <style>:root{--bg:{{ $design.theme.background }};--paper:{{ $design.theme.card }};--ink:{{ $design.theme.text }};--muted:{{ $design.theme.muted_text }};--rule:{{ $design.theme.border }};--accent:{{ $design.theme.accent }};--max-width:{{ $design.layout.max_width_px }}px;--site-font:"{{ $design.brand.font }}","Comic Sans",cursive}</style>
 </head>
 <body>
-  {{ $daily := where .Site.RegularPages "Section" "daily" }}
+  {{ $published := where .Site.RegularPages "Section" "in" (slice "daily" "previews") }}
   {{ $latest := false }}
-  {{ if gt (len $daily) 0 }}{{ $latest = index ($daily.ByDate.Reverse) 0 }}{{ end }}
+  {{ if gt (len $published) 0 }}{{ $latest = index ($published.ByDate.Reverse) 0 }}{{ end }}
   <header class="site-header">
     <div class="identity"><a class="brand" href="{{ "" | relURL }}">{{ $design.brand.title }}</a><span>{{ $design.brand.subtitle }}</span></div>
     <nav aria-label="Primary">{{ with $latest }}<a href="{{ .RelPermalink }}">Latest</a>{{ end }}<a href="{{ "daily/" | relURL }}">Daily</a></nav>

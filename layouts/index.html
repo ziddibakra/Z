@@ -1,16 +1,16 @@
 {{ define "main" }}
-  {{ $daily := where .Site.RegularPages "Section" "daily" }}
+  {{ $published := where .Site.RegularPages "Section" "in" (slice "daily" "previews") }}
   {{ $latest := false }}
-  {{ if gt (len $daily) 0 }}{{ $latest = index ($daily.ByDate.Reverse) 0 }}{{ end }}
+  {{ if gt (len $published) 0 }}{{ $latest = index ($published.ByDate.Reverse) 0 }}{{ end }}
   <h1 class="visually-hidden">ZiddiPnl</h1>
   <div class="home-items">
     <section class="chart-card home-item">
       <h2>Running NAV</h2>
-      {{ with $latest }}{{ $src := printf "daily/%s/%s" .Params.folder .Params.running_nav | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV through {{ .Params.folder }}"></a>{{ else }}<p class="empty">No published capture yet.</p>{{ end }}
+      {{ with $latest }}{{ $src := printf "%s/%s/%s" .Section .Slug .Params.running_nav | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV through {{ .Params.folder }}"></a>{{ else }}<p class="empty">No published capture yet.</p>{{ end }}
     </section>
     <section class="chart-card home-item">
       <h2>Running NAV Breakup</h2>
-      {{ with $latest }}{{ $src := printf "daily/%s/%s" .Params.folder .Params.running_nav_breakup | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV breakup through {{ .Params.folder }}"></a>{{ else }}<p class="empty">No published capture yet.</p>{{ end }}
+      {{ with $latest }}{{ $src := printf "%s/%s/%s" .Section .Slug .Params.running_nav_breakup | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV breakup through {{ .Params.folder }}"></a>{{ else }}<p class="empty">No published capture yet.</p>{{ end }}
     </section>
     {{ with $latest }}<a class="report-link home-item" href="{{ .RelPermalink }}"><span>Latest Report</span><strong>{{ .Params.folder }}</strong><b aria-hidden="true">→</b></a>{{ else }}<div class="report-link home-item unavailable"><span>Latest Report</span><strong>Unavailable</strong></div>{{ end }}
     <a class="report-link home-item" href="{{ "daily/" | relURL }}"><span>Older Reports</span><strong>Browse Daily folders</strong><b aria-hidden="true">→</b></a>
