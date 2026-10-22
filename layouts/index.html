@@ -5,6 +5,10 @@
   {{ if gt (len $daily) 0 }}{{ $latestDaily = index ($daily.ByDate.Reverse) 0 }}{{ end }}
   <h1 class="visually-hidden">ZiddiPnl</h1>
   <div class="home-items"{{ with $latest }} data-nabz-day="{{ .day }}"{{ end }}>
+    {{ with $latest.images.running_capital }}<section class="chart-card home-item running-chart">
+      <h2>Running Capital — Aggregate / Ledger NAV &amp; NAV Breakup</h2>
+      {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Aggregate, Ledger NAV and matching NAV breakup through {{ $latest.folder }}"></a>
+    </section>{{ else }}
     {{ with $latest.images.running_nav }}<section class="chart-card home-item running-chart">
       <h2>Running NAV</h2>
       {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV through {{ $latest.folder }}"></a>
@@ -13,6 +17,7 @@
       <h2>Running NAV Breakup</h2>
       {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV breakup through {{ $latest.folder }}"></a>
     </section>{{ end }}
+    {{ end }}
     {{ with $latest.images.strategy_today }}<section class="chart-card home-item daily-chart">
       <h2>Today's Strategy P&amp;L</h2>
       {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Today's Strategy P&amp;L for {{ $latest.folder }}"></a>
