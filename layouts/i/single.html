@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:image" content="{{ .Params.image | absURL }}">
+  <meta name="twitter:image:alt" content="Today's strategy P&amp;L chart">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:image" content="{{ .Params.image | absURL }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+</head>
+<body style="margin:1rem;font-family:sans-serif">
+  <h1>{{ .Title }}</h1>
+  <a href="{{ .Params.image | absURL }}"><img src="{{ .Params.image | absURL }}" alt="Today's strategy P&amp;L chart" style="max-width:100%;height:auto"></a>
+  <p><a href="{{ "" | relURL }}">{{ .Site.Title }}</a></p>
+</body>
+</html>
