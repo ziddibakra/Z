@@ -1,11 +1,11 @@
 {
-  "day": "2026-10-21",
-  "folder": "20261021",
-  "captured_at": "2026-10-21T20:17:01.508194+05:30",
+  "day": "2026-10-22",
+  "folder": "20261022",
+  "captured_at": "2026-10-22T15:20:00+05:30",
   "images": {
-    "running_nav": "debug-201701508194-running-nav-REL.png",
-    "running_nav_breakup": "debug-201701508194-running-nav-breakup-REL.png",
-    "strategy_today": "debug-201701508194-strategy-today-REL.png",
-    "running_strategy": "debug-201701508194-running-strategy-REL.png"
+    "running_nav": "1520-running-nav-REL.png",
+    "running_nav_breakup": "1520-running-nav-breakup-REL.png",
+    "strategy_today": "1520-strategy-today-REL.png",
+    "running_strategy": "1520-running-strategy-REL.png"
   }
 }
