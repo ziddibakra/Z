@@ -18,13 +18,13 @@
       {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running NAV breakup through {{ $latest.folder }}"></a>
     </section>{{ end }}
     {{ end }}
-    {{ with $latest.images.strategy_today }}<section class="chart-card home-item daily-chart">
-      <h2>Today's Strategy P&amp;L</h2>
-      {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Today's Strategy P&amp;L for {{ $latest.folder }}"></a>
-    </section>{{ end }}
     {{ with $latest.images.running_strategy }}<section class="chart-card home-item daily-chart">
       <h2>Running Strategy P&amp;L</h2>
       {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Running Strategy P&amp;L through {{ $latest.folder }}"></a>
+    </section>{{ end }}
+    {{ with $latest.images.strategy_today }}<section class="chart-card home-item daily-chart">
+      <h2>Today's Strategy P&amp;L</h2>
+      {{ $src := printf "latest/%s" . | relURL }}<a class="chart-link" href="{{ $src }}"><img src="{{ $src }}" alt="Today's Strategy P&amp;L for {{ $latest.folder }}"></a>
     </section>{{ end }}
     {{ with $latestDaily }}<a class="report-link home-item" href="{{ .RelPermalink }}"><span>Latest Report</span><strong>{{ .Params.folder }}</strong><b aria-hidden="true">→</b></a>{{ else }}<div class="report-link home-item unavailable"><span>Latest Report</span><strong>Unavailable</strong></div>{{ end }}
     <a class="report-link home-item" href="{{ "daily/" | relURL }}"><span>Older Reports</span><strong>Browse Daily folders</strong><b aria-hidden="true">→</b></a>
