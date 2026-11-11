@@ -4,6 +4,7 @@
   "captured_at": "2026-11-11T15:20:00+05:30",
   "images": {
     "running_capital": "1520-totalpnl-running-capital-pct-clean-REL.png",
-    "strategy_today": "1520-start0830-summary-pnlmeta-strategy-today-REL.png"
+    "strategy_today": "1520-start0830-summary-pnlmeta-strategy-today-REL.png",
+    "running_strategy": "1520-totalpnl-running-strategy-REL.png"
   }
 }
