@@ -1,0 +1,7 @@
+{{ define "main" }}
+  <h1>Daily</h1>
+  <p class="intro">Select a dated folder.</p>
+  <div class="folders">
+    {{ range .Pages.ByDate.Reverse }}<a class="folder" href="{{ .RelPermalink }}"><span>{{ .Params.folder }}</span><b aria-hidden="true">→</b></a>{{ else }}<p>No daily reports published yet.</p>{{ end }}
+  </div>
+{{ end }}

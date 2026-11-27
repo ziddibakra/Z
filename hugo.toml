@@ -1,0 +1,4 @@
+languageCode = "en-in"
+title = "ZiddiPnl"
+disableKinds = ["taxonomy", "term", "RSS"]
+

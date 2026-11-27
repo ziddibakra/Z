@@ -1,0 +1,38 @@
+{
+  "brand": {
+    "title": "ZiddiPnl",
+    "subtitle": "Pnl Journal",
+    "font": "Comic Sans MS"
+  },
+  "header": {
+    "links": [
+      "latest",
+      "daily"
+    ],
+    "sticky": false
+  },
+  "running": {
+    "start_date": "2026-10-15",
+    "show_nav": true,
+    "show_nav_breakup": true
+  },
+  "daily": {
+    "start_time": "09:15",
+    "show_capital": true,
+    "show_strategy": true
+  },
+  "layout": {
+    "max_width_px": 1400,
+    "chart_columns": 1,
+    "chart_click_to_expand": true
+  },
+  "theme": {
+    "background": "#F5F7F5",
+    "card": "#FFFFFF",
+    "text": "#172019",
+    "muted_text": "#647168",
+    "border": "#D9E0DA",
+    "accent": "#12C412",
+    "dark_mode": false
+  }
+}
